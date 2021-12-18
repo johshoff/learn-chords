@@ -58,6 +58,7 @@ const chord_patterns = [
       relative: [1, flat(3), flat(5), flat(7)],
     },
     wikipedia: 'https://en.wikipedia.org/wiki/Half-diminished_seventh_chord',
+    mnemonic: 'super mario',
   },
   {
     names: [
