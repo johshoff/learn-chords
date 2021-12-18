@@ -1,6 +1,18 @@
 'use strict';
 
-function flat(interval) { return '♭' + interval; }
+const integerForInterval = [Number.NaN,0,2,4,5,7,9,11];
+function rel(interval) {
+  return (typeof(interval) === 'number')
+    ? { name: ''+interval, integer: integerForInterval[interval] }
+    : interval;
+}
+function flat(rawInterval) {
+  const interval = rel(rawInterval);
+  return {
+    name: '♭' + interval.name,
+    integer: interval.integer - 1,
+  };
+}
 
 // also do chord progressions! https://www.jazzguitar.be/blog/diatonic-chords/
 // https://mixedinkey.com/captain-plugins/wiki/best-chord-progressions/
@@ -138,5 +150,20 @@ if (console === undefined) {
   const chord = randomChord();
   console.log(midiMiddleNotes(chord));
   for (const d of displaysHtml(chord)) console.log(d);
+
+  // do some testing
+  function assert(check, msg) {
+    if (!check) {
+      console.log("Assert failed", msg);
+    }
+  }
+
+  for (let p of chord_patterns) {
+    const n = p.notes;
+    assert(n.integer.length === n.relative.length, 'n.integer.length === n.relative.length');
+    for (let i in n.integer) {
+      assert(n.integer[i] === rel(n.relative[i]).integer, 'n.integer[i] === rel(n.relative[i]).integer');
+    }
+  }
 }
 
