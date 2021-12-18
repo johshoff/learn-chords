@@ -62,6 +62,20 @@ const chord_patterns = [
   },
   {
     names: [
+      'diminished',
+    ],
+    notation: [
+      'dim',
+      '<sup>o</sup>',
+    ],
+    notes: {
+      integer: [0, 3, 6],
+      relative: [1, flat(3), flat(5)],
+    },
+    wikipedia: 'https://en.wikipedia.org/wiki/Diminished_chord',
+  },
+  {
+    names: [
       'diminished seventh',
     ],
     notation: [
