@@ -1,42 +1,29 @@
 <!DOCTYPE html>
+<meta charset="utf-8"/>
+<script src='core.js'></script>
+<script src='midi.js'></script>
+<script src='game.js'></script>
 <script>
-	'use strict';
-
-	// also do chord progressions! https://www.jazzguitar.be/blog/diatonic-chords/
-	const chords = [
-		{
-			names: [
-				'half-diminished seventh',
-				'half-diminished',
-				'minor seventh flat five',
-			],
-			superscript_notation: [
-				'ø7',
-				'7/♭5', // garageband
-			],
-			notes: {
-				interval: [0, 3, 6, 10],
-				relative: ['1', '♭3', '♭5', '♭7'],
-			},
-			wikipedia: 'https://en.wikipedia.org/wiki/Half-diminished_seventh_chord',
-		},
-		{
-			// what about 9sus4 aka 11
-			names: [
-				'sus',
-				'suspended',
-			],
-			regular_notation: [
-				'sus2',
-			],
-			superscript_notation: [
-				'sus2',
-			],
-			notes: {
-				interval: [0, 2, 7],
-				relative: ['1', '2', '5'],
-			},
-			wikipedia: 'https://en.wikipedia.org/wiki/Half-diminished_seventh_chord',
-		},
-	];
+onload = function() {
+  'use strict';
+  const game = initGame((chord) => {
+    document.getElementById('chord_name').innerHTML = chord;
+  });
+  initMidi(game.noteOn, game.noteOff);
+}
 </script>
+<style>
+sup {
+  /* to keep the line at the same place. https://stackoverflow.com/a/1530819/3102 */
+  vertical-align: top;
+  position: relative;
+  top: -0.5em;
+
+  font-size: 0.7em;
+}
+#chord_name {
+  line-height: 180%;
+  font-size: 10em;
+}
+</style>
+<div id='chord_name'></div>
