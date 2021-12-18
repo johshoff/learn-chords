@@ -48,6 +48,23 @@ const chord_patterns = [
     wikipedia: 'https://en.wikipedia.org/wiki/Half-diminished_seventh_chord',
   },
   {
+    names: [
+      'diminished seventh',
+    ],
+    notation: [
+      '<sup>o7</sup>',
+      'dim<sup>7</sup>',
+      'm<sup>6♭5</sup>',
+      // accodring to https://en.wikipedia.org/wiki/Diminished_seventh_chord, it is
+      // sometimes just 'dim' or '<sup>o</sup>', but can be confused with diminished triad
+    ],
+    notes: {
+      integer: [0, 3, 6, 9],
+      relative: [1, flat(3), flat(5), flat(flat(7))],
+    },
+    wikipedia: 'https://en.wikipedia.org/wiki/Diminished_seventh_chord',
+  },
+  {
     // what about 9sus4 aka 11
     names: [
       'sus',
