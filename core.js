@@ -113,9 +113,8 @@ function randomChoice(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function randomKey() {
-  // TODO: treat minor as keys here, or leave it to chords?
-  const keys = {
+function randomRoot() {
+  const roots = {
     'C':  { middle_midi: 60 },
     'C♯': { middle_midi: 61 },
     'D':  { middle_midi: 62 },
@@ -129,8 +128,8 @@ function randomKey() {
     'B♭': { middle_midi: 70 },
     'B':  { middle_midi: 71 },
   };
-  const [key, value] = randomChoice(Object.entries(keys));
-  return { ...value, name: key };
+  const [root, value] = randomChoice(Object.entries(roots));
+  return { ...value, name: root };
 }
 
 function randomChordPattern() {
@@ -138,24 +137,24 @@ function randomChordPattern() {
 }
 
 function randomChord() {
-  const key = randomKey();
+  const root = randomRoot();
   const pattern = randomChordPattern();
-  return { key, pattern };
+  return { root, pattern };
 }
 
 function* displaysHtml(chord) {
   // a chord can be displayed in a number of ways. Return all of them.
 
-  const key_name = chord.key.name;
+  const root_name = chord.root.name;
 
   for (const n of chord.pattern.notation) {
-    yield key_name + n;
+    yield root_name + n;
   }
 }
 
 function midiMiddleNotes(chord) {
   // midi notes as if played on or after middle C in midi
-  const tonic = chord.key.middle_midi;
+  const tonic = chord.root.middle_midi;
   return chord.pattern.notes.integer.map(i => i + tonic);
 }
 
